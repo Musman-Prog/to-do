@@ -1,0 +1,49 @@
+{% extends 'todo/base.html' %}
+{% block title %}ToDo App{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="todo_list">
+        <h3 class="title">To-do list</h3>
+
+        <form class="add_form" action="{% url 'add' %}" method="POST" role="form">
+            {% csrf_token %}
+            <div class="form-group">
+                <div class="input-group">
+                  {{ form.text }}
+                  <span class="input-group-btn">
+                      <button type="submit" class="btn add button">Add</button>
+                  </span>
+                </div>
+            </div>
+        </form>
+
+        <table class="table table-borderless">
+        {% if todo_list %}
+            {% for task in todo_list %}
+                {% if task.complete %}
+                    <tr class="completed d-flex">
+                        <td class="col-sm-11"><a class="task" href="{% url 'notcomplete' task.id %}">{{ task.text }}</a></td>
+
+                        <td class="col-sm-1"><a class="delete" href="{% url 'delete' task.id %}"><img src="/static/images/del.png"></a></td>
+                    </tr>
+                {% else %}
+                    <tr class="not_completed d-flex">
+                        <td class="col-sm-12"><a class="task" href="{% url 'complete' task.id %}">{{ task.text }}</a></td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            <tr class="d-flex">
+                <td class="col-sm-12 empty">The list is empty</td>
+            </tr>
+        {% endif %}
+        </table>
+
+        {% if todo_list %}
+            <center><a href="{% url 'delete_all' %}"><button type="button" class="btn del button btn-sm">Clear all</button></a></center>
+        {% else %}
+        {% endif %}
+    </div>
+</div>
+{% endblock %}

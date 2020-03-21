@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        
+        <!-- Title -->
+        <title>{% block title%}{% endblock title %}</title>
+        
+        <!-- Google Fonts -->
+        <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Open+Sans%3A400%2C300%2C500%2C600%2C700%7CPlayfair+Display%7CRoboto%7CRaleway%7CSpectral%7CRubik">
+        
+        <!-- CSS -->
+        <link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+        <link rel="stylesheet" href="{% static 'css/main.css' %}">
+    </head>
+
+    <body>
+        {% block content %}
+
+        {% endblock content %}
+
+        <footer class="page-footer font-small bg-footer pt-4 mt-4">
+            <div class="footer-copyright py-3 text-center">
+                &copy; ToDo list App.
+            </div>
+        </footer>
+    </body>
+</html>
